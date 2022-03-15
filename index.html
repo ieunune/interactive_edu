@@ -7,19 +7,32 @@
     <title>Document</title>
     <style>
         body{
+            position: relative;
             background-color: black;
+            cursor: none;
         }
         h1{
-            color: #fff
+            color: #fff;
+        }
+        .cursor{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            top: -20px;
+            left: -8px;
         }
     </style>
     <script>
         window.onload = function(){
             let h1 = document.getElementsByTagName("h1")[0];
+            let cursor = document.getElementsByClassName("cursor")[0];
+
             window.addEventListener("mousemove", mouseFunc , false);
 
             function mouseFunc(e){
                 h1.innerHTML = "X : " + e.clientX + ", Y : " + e.clientY
+                cursor.style.transform = "translate("+e.clientX+"px,"+e.clientY+"px)";
                 console.log(e.clientX + ", " + e.clientY);
             }
         }
