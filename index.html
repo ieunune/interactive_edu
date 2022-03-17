@@ -19,23 +19,42 @@
             width: 100px;
             height: 100px;
             background-color: red;
-            top: -20px;
-            left: -8px;
+            top: 0;
+            left: 0;
         }
     </style>
     <script>
+        let x = 0;
+        let y = 0;
+        let mx = 0;
+        let my = 0;
+        let speed = 0.09;
+        let cursor;
+
         window.onload = function(){
             let h1 = document.getElementsByTagName("h1")[0];
-            let cursor = document.getElementsByClassName("cursor")[0];
+            cursor = document.getElementsByClassName("cursor")[0];
 
             window.addEventListener("mousemove", mouseFunc , false);
 
             function mouseFunc(e){
-                h1.innerHTML = "X : " + e.clientX + ", Y : " + e.clientY
-                cursor.style.transform = "translate("+e.clientX+"px,"+e.clientY+"px)";
-                console.log(e.clientX + ", " + e.clientY);
+                h1.innerHTML = "X : " + e.clientX + ", Y : " + e.clientY;
+                x = e.clientX;
+                y = e.clientY;
+                // cursor.style.transform = "translate("+e.clientX+"px,"+e.clientY+"px)";
+                // console.log(e.clientX + ", " + e.clientY);
             }
+
+            loop();
         }
+        function loop() {
+            
+            mx += (x - mx) * speed;
+            my += (y - my) * speed;
+            cursor.style.transform = "translate("+mx+"px,"+my+"px)";
+            window.requestAnimationFrame(loop);    
+        }
+
     </script>
 </head>
 <body>
