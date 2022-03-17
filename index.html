@@ -18,9 +18,24 @@
             position: absolute;
             width: 100px;
             height: 100px;
-            background-color: red;
+            background-color: blue;
             top: 0;
             left: 0;
+            margin: -50px 0 0 -50px;
+            transition : all 500ms cubic-bezier(0.570, -0.140, 0.345, 1.225);
+        }
+        button {
+            font-size: 40px;
+            color: blue;
+            padding: 30px 80px;
+            margin: 50px;
+            transition: all .5s cubic-bezier(0.800, 0.000, 0.245, 1.000);
+        }
+        button:hover{
+            writing-mode: vertical-rl;
+            font-weight: bold;
+            background-color: aqua;
+            padding: 80px 150px;
         }
     </style>
     <script>
@@ -35,17 +50,17 @@
             let h1 = document.getElementsByTagName("h1")[0];
             cursor = document.getElementsByClassName("cursor")[0];
 
-            window.addEventListener("mousemove", mouseFunc , false);
+            window.addEventListener("click", mouseFunc , false);
 
             function mouseFunc(e){
                 h1.innerHTML = "X : " + e.clientX + ", Y : " + e.clientY;
                 x = e.clientX;
                 y = e.clientY;
-                // cursor.style.transform = "translate("+e.clientX+"px,"+e.clientY+"px)";
+                cursor.style.transform = "translate("+e.clientX+"px,"+e.clientY+"px)";
                 // console.log(e.clientX + ", " + e.clientY);
             }
 
-            loop();
+            // loop(); 
         }
         function loop() {
             
@@ -60,5 +75,6 @@
 <body>
     <h1>test</h1>
     <div class="cursor"></div>
+    <button>HOVER ME</button>
 </body>
 </html>
